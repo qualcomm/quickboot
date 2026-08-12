@@ -1,7 +1,0 @@
-# This udev rule acts as the crucial bridge between the kernel discovering the sound card
-# and user-space starting the audio server..
-#
-# Instead of waiting for a generic multi-user target, it directly triggers PipeWire the moment
-# audio control node becomes available.
-
-SUBSYSTEM=="sound", KERNEL=="controlC0", ACTION=="add", TAG+="systemd", ENV{SYSTEMD_WANTS}="pipewire.service"
