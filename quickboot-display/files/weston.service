@@ -1,3 +1,14 @@
+# Copyright © 2008-2012 Kristian Høgsberg
+# Copyright © 2010-2012 Intel Corporation
+# Copyright © 2010-2011 Benjamin Franzke
+# Copyright © 2011-2012 Collabora, Ltd.
+# Copyright © 2010 Red Hat <mjg@redhat.com>
+# SPDX-License-Identifier: MIT
+#
+# Modifications:
+# Copyright (c) 2026 Qualcomm Technologies, Inc.
+# Modified for QuickBoot service startup optimization
+
 # Manages the core weston daemon.
 # Triggered by udev rules (03-drm.rules) upon display card device detection.
 

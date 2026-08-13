@@ -1,7 +1,7 @@
 #!/bin/sh
-#
 # Camera-HAL initialization incurs a ~1 s delay scanning all sensor module bins 
 # under /usr/lib/camx/lemans/camera. 
+#
 # This script reduces that delay by moving sensor modules not required for the 
 # IQ-9075 EVK to a backup directory, leaving only the relevant bins for HAL discovery.
 

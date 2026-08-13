@@ -11,7 +11,7 @@ install_data(
     )
 
 install_data(
-    'files/camera-modules.conf',
+    'files/qcom-camera.conf',
     install_dir  : sysconfdir / 'modules-load.d',
     install_mode : 'rw-r--r--',
     )

@@ -10,7 +10,7 @@ install_data(
     )
 
 install_data(
-    'files/display-modules.conf',
+    'files/qcom-display.conf',
     install_dir  : sysconfdir / 'modules-load.d',
     install_mode : 'rw-r--r--',
     )

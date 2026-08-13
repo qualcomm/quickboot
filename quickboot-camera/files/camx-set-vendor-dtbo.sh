@@ -1,9 +1,4 @@
 #!/bin/sh
-# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-# SPDX-License-Identifier: BSD-3-Clause-Clear
-
-# ==============================================================================
-# DESCRIPTION:
 # This script must be executed manually by the user during the first boot for 
 # camera to work from subsequent builds on the terminal.
 #
