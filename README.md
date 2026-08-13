@@ -23,8 +23,9 @@ time-to-first-frame for display, camera, and audio subsystems.
 Clone the repo on the device and run the installer script directly — no build tools needed:
 
 ```bash
-git clone https://github.com/ctheegal/quickboot.git
-cd quickboot
+curl -L https://github.com/qualcomm/quickboot/archive/refs/heads/main.zip -o quickboot.zip
+unzip quickboot.zip
+cd quickboot-main
 sudo ./install.sh
 ```
 
@@ -39,7 +40,7 @@ that fetches from this repository. Example recipe snippet:
 ```bitbake
 inherit meson systemd
 
-SRC_URI = "git://github.com/ctheegal/quickboot.git;protocol=https;branch=main"
+SRC_URI = "git://github.com/qualcomm/quickboot.git;protocol=https;branch=main"
 SRCREV  = "<commit-hash>"
 
 S = "${UNPACKDIR}/git/quickboot-<subsystem>"

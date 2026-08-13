@@ -1,12 +1,21 @@
 #!/bin/bash
-# install.sh
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
 #
 # Installs QuickBoot early-boot files directly onto the device at runtime.
 # Run from the root of the cloned quickboot repository:
 #
-#   git clone https://github.com/ctheegal/quickboot.git
+#   Option-1 (If 'git' available on the device):
+#   git clone https://github.com/qualcomm/quickboot.git
 #   cd quickboot
 #   sudo ./install.sh
+#
+#   Option-2:
+#   curl -L https://github.com/qualcomm/quickboot/archive/refs/heads/main.zip -o quickboot.zip
+#   unzip quickboot.zip
+#   cd quickboot-main
+#   sudo ./install.sh
+
 
 set -e
 

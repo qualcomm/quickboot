@@ -1,14 +1,12 @@
-# Copyright © 2008-2012 Kristian Høgsberg
-# Copyright © 2010-2012 Intel Corporation
-# Copyright © 2010-2011 Benjamin Franzke
-# Copyright © 2011-2012 Collabora, Ltd.
-# Copyright © 2010 Red Hat <mjg@redhat.com>
+# Based on weston.service from openembedded-core
+# Source: https://github.com/openembedded/openembedded-core
 # SPDX-License-Identifier: MIT
+# 
+# Copyright (c) 2025 Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
+# Modifications: Adapted for QuickBoot early-boot optimization
 #
-# Modifications:
-# Copyright (c) 2026 Qualcomm Technologies, Inc.
-# Modified for QuickBoot service startup optimization
-
+#
 # Manages the core weston daemon.
 # Triggered by udev rules (03-drm.rules) upon display card device detection.
 
