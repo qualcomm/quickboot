@@ -1,3 +1,6 @@
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
+#
 # Trigger Weston immediately when the primary DRM card is detected by the kernel.
 # This eliminates delays waiting for generic multi-user targets.
 

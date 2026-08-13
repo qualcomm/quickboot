@@ -1,4 +1,7 @@
 #!/bin/sh
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
+#
 # Camera-HAL initialization incurs a ~1 s delay scanning all sensor module bins 
 # under /usr/lib/camx/lemans/camera. 
 #

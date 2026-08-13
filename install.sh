@@ -1,5 +1,6 @@
 #!/bin/bash
-# install.sh
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
 #
 # Installs QuickBoot early-boot files directly onto the device at runtime.
 # Run from the root of the cloned quickboot repository:

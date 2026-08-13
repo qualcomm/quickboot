@@ -1,3 +1,11 @@
+# Based on weston.socket from openembedded-core (MIT)
+# Source: https://github.com/openembedded/openembedded-core/tree/master/meta/recipes-graphics/wayland
+# SPDX-License-Identifier: MIT
+# 
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
+# Modifications for QuickBoot: early-boot startup optimization
+#
 [Unit]
 Description=Weston socket
 
