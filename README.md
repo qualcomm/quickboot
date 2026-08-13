@@ -61,4 +61,4 @@ packaged as a separate recipe pointing to its subdirectory via the `S` variable.
 - Tarun Balaji Nidiganti — `tnidiganti@qti.qualcomm.com`, Qualcomm Technologies, Inc.
 
 ## License
-MIT — see [LICENSE](LICENSE.txt) for details.
+BSD 3-Clause Clear License — see [LICENSE](LICENSE.txt) for details.
