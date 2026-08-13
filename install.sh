@@ -4,7 +4,7 @@
 # Installs QuickBoot early-boot files directly onto the device at runtime.
 # Run from the root of the cloned quickboot repository:
 #
-#   git clone https://github.com/ctheegal/quickboot.git
+#   git clone https://github.com/qualcomm/quickboot.git
 #   cd quickboot
 #   sudo ./install.sh
 

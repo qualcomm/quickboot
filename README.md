@@ -23,7 +23,7 @@ time-to-first-frame for display, camera, and audio subsystems.
 Clone the repo on the device and run the installer script directly — no build tools needed:
 
 ```bash
-git clone https://github.com/ctheegal/quickboot.git
+git clone https://github.com/qualcomm/quickboot.git
 cd quickboot
 sudo ./install.sh
 ```
@@ -33,26 +33,30 @@ system paths, then reloads `systemd` and `udev` automatically.
 
 ## Yocto Integration
 
-This project can be pulled directly into a Yocto build by composing a `.bb` recipe
-that fetches from this repository. Example recipe snippet:
+This project uses one top-level Meson build for all subsystems. It can be pulled
+directly into a Yocto build with a single `.bb` recipe. Example recipe snippet:
 
 ```bitbake
 inherit meson systemd
 
-SRC_URI = "git://github.com/ctheegal/quickboot.git;protocol=https;branch=main"
+SRC_URI = "git://github.com/qualcomm/quickboot.git;protocol=https;branch=main"
 SRCREV  = "<commit-hash>"
 
-S = "${UNPACKDIR}/git/quickboot-<subsystem>"
+S = "${UNPACKDIR}/git"
+
+EXTRA_OEMESON += "-Dsystemd_system_unitdir=${systemd_system_unitdir}"
 
 FILES:${PN} = " \
     ${sysconfdir}/modules-load.d/ \
     ${sysconfdir}/udev/rules.d/ \
-    ${sysconfdir}/systemd/system/ \
+    ${systemd_system_unitdir}/ \
+    ${bindir}/camx-set-vendor-dtbo.sh \
+    ${bindir}/camera-sensors-prune.sh \
 "
 ```
 
-Each subsystem (`quickboot-display`, `quickboot-camera`, `quickboot-audio`) can be
-packaged as a separate recipe pointing to its subdirectory via the `S` variable.
+The recipe may split display, camera, and audio into separate output packages
+while keeping a single source tree and Meson project.
 
 ## Authors
 - Chitti Babu Theegala — `ctheegal@qti.qualcomm.com`, Qualcomm Technologies, Inc.
