@@ -82,6 +82,7 @@ echo "--- Reloading udev rules ---"
 udevadm control --reload-rules
 udevadm trigger
 
+sync
 echo ""
 echo "====================================================="
 echo "  Installation complete."

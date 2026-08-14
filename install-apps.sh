@@ -92,6 +92,7 @@ install_file "${CAM_DIR}/camera-preview.service"   "${SYSTEMD_DIR}" "0644"
 enable_service "camera-preview.service"
 echo ""
 
+sync
 echo "========================================"
 echo " Installation complete."
 echo " Both services are enabled for"
