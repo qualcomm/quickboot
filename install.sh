@@ -57,6 +57,10 @@ install -m 0644 "$CAM/cam-server.service"       /etc/systemd/system/cam-server.s
 install -m 0755 "$CAM/camx-set-vendor-dtbo.sh"  /usr/bin/camx-set-vendor-dtbo.sh
 install -m 0755 "$CAM/camera-sensors-prune.sh"  /usr/bin/camera-sensors-prune.sh
 
+echo "--- Run the camera configuration script ---"
+sh /usr/bin/camx-set-vendor-dtbo.sh
+sh /usr/bin/camera-sensors-prune.sh
+
 # ── quickboot-audio ───────────────────────────────────────────────────────────
 echo ""
 echo "--- quickboot-audio ---"
