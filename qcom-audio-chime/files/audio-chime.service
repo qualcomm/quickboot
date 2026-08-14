@@ -1,0 +1,29 @@
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
+
+# Demo/sample oneshot systemd service for early boot audio chime.
+#
+# It strictly depends on PipeWire and fires immediately after PipeWire
+# is ready, acting as the final checkpoint in the boot sequence.
+#
+# Disabled by default. Enabled only when the 'quickboot' DISTRO_FEATURE
+# is set. Used for boot time measurement and profiling.
+
+[Unit]
+Description=QuickBoot Early Audio Chime
+DefaultDependencies=no
+Requires=pipewire.service
+After=pipewire.service
+ConditionPathExists=/usr/share/sounds/sample-3s.wav
+
+[Service]
+User=root
+Type=oneshot
+
+# RemainAfterExit ensures service isn't restarted continuously
+RemainAfterExit=yes
+ExecStart=/usr/bin/audio-chime /usr/share/sounds/sample-3s.wav
+TimeoutStartSec=15
+
+[Install]
+WantedBy=multi-user.target

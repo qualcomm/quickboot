@@ -1,0 +1,9 @@
+# Override the systemd system unit installation directory.
+# Leave empty to auto-detect via pkg-config or fall back to
+# <prefix>/lib/systemd/system.
+option(
+  'systemd_system_unit_dir',
+  type        : 'string',
+  value       : '',
+  description : 'Directory for systemd system unit files (e.g. /lib/systemd/system)',
+)
