@@ -1,8 +1,15 @@
 # QuickBoot
 
-Early boot optimization package for Qualcomm platforms.
-Installs udev rules, kernel module lists, and systemd units to minimize
-time-to-first-frame for display, camera, and audio subsystems.
+
+QuickBoot is an early-boot optimization package for Qualcomm platforms that dramatically
+reduces time-to-first-frame (TTFF) for display, camera, and audio subsystems — a critical
+KPI for industrial, and consumer IoT devices where perceived responsiveness at
+power-on directly impacts user experience and product differentiation.
+
+By combining deterministic kernel module pre-loading, hardware-event-driven service activation,
+and aggressive removal of implicit systemd ordering barriers, QuickBoot enables subsystems to
+reach a ready state in parallel with the rest of the boot sequence, rather than waiting
+for the full userspace initialization chain to complete.
 
 ## How It Works
 
