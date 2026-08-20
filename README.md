@@ -33,7 +33,8 @@ Clone the repo on the device and run the installer script directly — no build 
 curl -L https://github.com/qualcomm/quickboot/archive/refs/heads/main.zip -o quickboot.zip
 unzip quickboot.zip
 cd quickboot-main
-sudo ./install.sh
+chmod +x install.sh
+./install.sh all
 ```
 
 The script copies all configs, udev rules, systemd units, and scripts to their correct
