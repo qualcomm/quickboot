@@ -87,6 +87,12 @@ echo "DATADIR   : ${DATADIR}"
 echo "SYSTEMD   : ${SYSTEMD_DIR}"
 echo ""
 
+# Remount the filesystem containing /usr only when it is read-only.
+USR_MOUNT="$(findmnt -n -o TARGET -T /usr)"
+if findmnt -n -o OPTIONS "$USR_MOUNT" | grep -qw ro; then
+    mount -o remount,rw "$USR_MOUNT"
+fi
+
 # ── Ensure target directories exist ──────────────────────────────────────────
 mkdir -p /etc/modules-load.d
 mkdir -p /etc/udev/rules.d
@@ -201,6 +207,12 @@ case "$SUBSYSTEM" in
         exit 1
         ;;
 esac
+
+# Restore labels on the paths modified by the installer.
+if command -v restorecon >/dev/null 2>&1 && selinuxenabled 2>/dev/null; then
+    restorecon -RF /usr/bin /etc/modules-load.d /etc/udev/rules.d \
+        /etc/systemd/system "$BINDIR" "$DATADIR" "$SYSTEMD_DIR"
+fi
 
 # ── Reload systemd and enable subsystem services ─────────────────────────────
 echo ""
