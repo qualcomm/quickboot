@@ -1,0 +1,28 @@
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
+
+# Demo/sample systemd service for early boot camera preview.
+#
+# Starts camera preview when cam-server and weston are ready at boot.
+# Measures the time for the first camera frame preview, which indicates
+# boot completion on products like Action-Camera.
+#
+# Disabled by default. Enabled only when the 'quickboot' DISTRO_FEATURE
+# is set. Used for boot time measurement and profiling.
+
+[Unit]
+Description=QuickBoot Early Camera Preview
+DefaultDependencies=no
+Requires=cam-server.service weston.service
+After=cam-server.service weston.service
+
+[Service]
+User=root
+Type=simple
+LimitCORE=infinity
+ExecStart=/usr/bin/camera-preview
+Restart=always
+Environment="WAYLAND_DISPLAY=/run/wayland-0"
+
+[Install]
+WantedBy=multi-user.target
