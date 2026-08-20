@@ -1,6 +1,18 @@
 # Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
 # SPDX-License-Identifier: BSD-3-Clause-Clear
 #
-# Trigger cam-server.service automatically as soon as the main video device (video0) is enumerated by the kernel.
+# Trigger cam-server.service automatically as soon as the camera subsystem's
+# core node is enumerated by the kernel.
+#
+# Match on the Camera Request Manager (ATTR{name}=="cam-req-mgr") rather than a
+# fixed KERNEL=="video0". The videoN numbering is assigned in probe order and is
+# not stable across kernel/DTB/sensor changes, so "video0" is not guaranteed to
+# be the camera node. "cam-req-mgr" is the CAMSS request-manager node whose name
+# is fixed regardless of enumeration order. cam-server is idempotent, so if
+# multiple matching nodes appear the extra SYSTEMD_WANTS triggers are harmless.
+#
+# SYSTEMD_ALIAS exposes this node as a stable device unit "dev-cam_req_mgr.device"
+# so cam-server.service can order itself against it (After=/Wants=) without
+# hardcoding the unstable videoN name.
 
-SUBSYSTEM=="video4linux", KERNEL=="video0", ACTION=="add", TAG+="systemd", ENV{SYSTEMD_WANTS}="cam-server.service"
+SUBSYSTEM=="video4linux", ACTION=="add", ATTR{name}=="cam-req-mgr", ENV{SYSTEMD_ALIAS}="/dev/cam_req_mgr", TAG+="systemd", ENV{SYSTEMD_WANTS}="cam-server.service"
