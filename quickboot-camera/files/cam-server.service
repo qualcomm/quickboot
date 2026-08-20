@@ -40,9 +40,13 @@ SourcePath=/usr/bin/cam-server
 # Remove default dependenies (sysinit.target, basic.target) to enable early start
 DefaultDependencies=no
 
-# Start as soon as camera devices appear
-After=dev-video0.device
-Wants=dev-video0.device
+# Order against the camera request-manager node via the stable device-unit alias
+# published by 02-cam-server.rules (SYSTEMD_ALIAS=/dev/cam_req_mgr). This gives an
+# explicit After=/Wants= ordering without hardcoding the unstable videoN name --
+# dev-cam_req_mgr.device tracks the cam-req-mgr node regardless of its videoN
+# enumeration.
+Wants=dev-cam_req_mgr.device
+After=dev-cam_req_mgr.device
 
 [Service]
 User=root
