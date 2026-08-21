@@ -14,9 +14,12 @@
 # Remove default dependenies (sysinit.target, basic.target) to enable early start
 DefaultDependencies=no
 
-# Start as soon as display card appear
-Requires=dev-dri-card0.device
-After=dev-dri-card0.device
+# Start as soon as the display card appears. Order against the stable device-unit
+# alias published by 03-drm.rules (SYSTEMD_ALIAS=/dev/dri/msm_dpu_card) instead of
+# a hardcoded dev-dri-card0.device -- dev-dri-msm_dpu_card.device tracks the
+# msm_dpu display controller regardless of its cardN enumeration.
+Requires=dev-dri-msm_dpu_card.device
+After=dev-dri-msm_dpu_card.device
 
 # Since we are part of the graphical session, make sure we are started before
 # it is complete.

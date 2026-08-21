@@ -1,7 +1,20 @@
 # Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
 # SPDX-License-Identifier: BSD-3-Clause-Clear
 #
-# Trigger Weston immediately when the primary DRM card is detected by the kernel.
-# This eliminates delays waiting for generic multi-user targets.
+# Trigger Weston immediately when the primary display controller's DRM card is
+# detected by the kernel. This eliminates delays waiting for generic multi-user
+# targets.
+#
+# Match on the msm_dpu display-controller driver (DRIVERS=="msm_dpu") rather than
+# a fixed KERNEL=="card0". The cardN numbering is assigned in probe order and is
+# not guaranteed to be the display controller when more than one DRM device is
+# present (e.g. a discrete GPU or a DP/HDMI bridge exposing its own card). The
+# msm_dpu driver name is stable and board-independent across the msm display
+# stack. DEVTYPE=="drm_minor" + KERNEL=="card[0-9]*" restrict the match to the
+# card node itself, excluding renderD* and card*-<connector> child nodes.
+#
+# SYSTEMD_ALIAS exposes this node as a stable device unit
+# "dev-dri-msm_dpu_card.device" so weston.service can order itself against it
+# (Requires=/After=) without hardcoding the unstable cardN name.
 
-ACTION=="add", SUBSYSTEM=="drm", KERNEL=="card0", TAG+="systemd", ENV{SYSTEMD_READY}="1", ENV{SYSTEMD_WANTS}="weston.service"
+ACTION=="add", SUBSYSTEM=="drm", ENV{DEVTYPE}=="drm_minor", DRIVERS=="msm_dpu", KERNEL=="card[0-9]*", ENV{SYSTEMD_ALIAS}="/dev/dri/msm_dpu_card", TAG+="systemd", ENV{SYSTEMD_READY}="1", ENV{SYSTEMD_WANTS}="weston.service"
